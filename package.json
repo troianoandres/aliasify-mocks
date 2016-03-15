@@ -1,0 +1,24 @@
+{
+  "name": "aliasify-mocks",
+  "version": "0.0.1",
+  "description": "NPM package to mock all modules founded into specific directories",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/troianoandres/aliasify-mocks.git"
+  },
+  "keywords": [
+    "aliasify",
+    "mocks",
+    "aliasify-mocks"
+  ],
+  "author": "Andres Troiano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/troianoandres/aliasify-mocks/issues"
+  },
+  "homepage": "https://github.com/troianoandres/aliasify-mocks#readme"
+}
