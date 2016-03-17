@@ -1,6 +1,6 @@
 {
   "name": "aliasify-mocks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "NPM package to mock all modules founded into specific directories",
   "main": "index.js",
   "scripts": {
