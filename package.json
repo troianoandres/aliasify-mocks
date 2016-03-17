@@ -30,6 +30,7 @@
     "aliasify": "^1.9.0",
     "chai": "^3.2.0",
     "coverageify": "^1.0.4",
+    "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-exec": "^2.1.2",
     "gulp-rimraf": "^0.2.0",
@@ -42,6 +43,7 @@
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.18",
     "rewireify": "^0.2.0",
+    "run-sequence": "^1.1.5",
     "sinon": "^1.16.1",
     "sinon-chai": "^2.8.0"
   },

@@ -1,11 +1,26 @@
 var gulp = require('gulp');
-var exec = require('gulp-exec');
-var rimraf = require('gulp-rimraf');
+var exec = require('child_process').exec;
+var del = require('del');
+var runSequence = require('run-sequence');
 
-gulp.task('release', function () {
-    gulp.src(['./package.json', './README.md'])
-        .pipe(gulp.dest('./aliasify-mocks'))
-        .pipe(exec('cd aliasify-mocks'))
-        .pipe(exec('npm publish'))
-        .pipe(rimraf())
+gulp.task('release:move-files', function () {
+    return gulp.src(['./package.json', './README.md']).pipe(gulp.dest('./aliasify-mocks'));
+});
+
+gulp.task('release:publish', function () {
+    exec('npm publish ./aliasify-mocks', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+});
+
+gulp.task('release:clean', function (cb) {
+    del(['./aliasify-mocks/package.json', './aliasify-mocks/README.md']);
+
+    cb();
+});
+
+gulp.task('release', function (cb) {
+    runSequence('release:move-files', 'release:publish', 'release:clean', cb);
 });
