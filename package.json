@@ -50,7 +50,8 @@
   "aliasify": {
     "aliases": {
       "path": "lib-test/modules-mocks/path-mock.js",
-      "fs": "lib-test/modules-mocks/fs-mock.js"
+      "fs": "lib-test/modules-mocks/fs-mock.js",
+        "validator": "lib-test/modules-mocks/validator-mock.js"
     }
   }
 }

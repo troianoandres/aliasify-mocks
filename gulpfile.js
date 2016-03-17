@@ -10,7 +10,7 @@ gulp.task('release:update', function (cb) {
 });
 
 gulp.task('release:move-files', function () {
-    return gulp.src(['./package.json', './README.md', './.npmignore']).pipe(gulp.dest('./aliasify-mocks'));
+    return gulp.src(['./package.json', './README.md']).pipe(gulp.dest('./aliasify-mocks'));
 });
 
 gulp.task('release:publish', function (cb) {
@@ -20,7 +20,7 @@ gulp.task('release:publish', function (cb) {
 });
 
 gulp.task('release:clean', function (cb) {
-    del(['./aliasify-mocks/package.json', './aliasify-mocks/README.md', './aliasify-mocks/.npmignore']);
+    del(['./aliasify-mocks/package.json', './aliasify-mocks/README.md']);
 
     cb();
 });
