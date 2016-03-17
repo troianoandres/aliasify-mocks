@@ -1,6 +1,6 @@
 {
   "name": "aliasify-mocks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NPM package to mock all modules founded into specific directories",
   "main": "index.js",
   "scripts": {
@@ -48,8 +48,8 @@
   },
   "aliasify": {
     "aliases": {
-        "path": "lib-test/modules-mocks/path-mock.js",
-        "fs": "lib-test/modules-mocks/fs-mock.js"
+      "path": "lib-test/modules-mocks/path-mock.js",
+      "fs": "lib-test/modules-mocks/fs-mock.js"
     }
   }
 }
