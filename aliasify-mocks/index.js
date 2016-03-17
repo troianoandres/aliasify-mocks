@@ -1,8 +1,6 @@
 var lodash = require('lodash');
 var searchForMocks = require('./src/search-for-mocks');
 
-process.env.NODE_PATH = __dirname;
-
 module.exports = function (config) {
     var directories = config['directories'];
     var mocks = config['aliases'];
