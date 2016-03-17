@@ -43,8 +43,7 @@
     "phantomjs": "^1.9.18",
     "rewireify": "^0.2.0",
     "sinon": "^1.16.1",
-    "sinon-chai": "^2.8.0",
-    "yargs": "^4.3.1"
+    "sinon-chai": "^2.8.0"
   },
   "aliasify": {
     "aliases": {
