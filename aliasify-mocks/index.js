@@ -17,12 +17,3 @@ module.exports = function (config) {
         lodash.extend(mocks, modulesToMock);
     }
 };
-
-aliasifyModules({
-    directories: [
-        'gulp-builder/src'
-    ],
-    modules: 'lib-test/modules-mocks',
-    mockFilePattern: '-mock.js',
-    aliases: aliases
-});
