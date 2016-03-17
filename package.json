@@ -4,7 +4,7 @@
   "description": "NPM package to mock all modules founded into specific directories",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,36 @@
   "bugs": {
     "url": "https://github.com/troianoandres/aliasify-mocks/issues"
   },
-  "homepage": "https://github.com/troianoandres/aliasify-mocks#readme"
+  "homepage": "https://github.com/troianoandres/aliasify-mocks#readme",
+  "dependencies": {
+    "lodash": "^4.6.1",
+    "path": "^0.12.7",
+    "validator": "^5.1.0"
+  },
+  "devDependencies": {
+    "aliasify": "^1.9.0",
+    "chai": "^3.2.0",
+    "coverageify": "^1.0.4",
+    "gulp": "^3.9.1",
+    "gulp-exec": "^2.1.2",
+    "gulp-rimraf": "^0.2.0",
+    "karma": "^0.13.2",
+    "karma-browserify": "^4.2.1",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^0.2.6",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "mocha": "^2.2.5",
+    "phantomjs": "^1.9.18",
+    "rewireify": "^0.2.0",
+    "sinon": "^1.16.1",
+    "sinon-chai": "^2.8.0",
+    "yargs": "^4.3.1"
+  },
+  "aliasify": {
+    "aliases": {
+        "path": "lib-test/modules-mocks/path-mock.js",
+        "fs": "lib-test/modules-mocks/fs-mock.js"
+    }
+  }
 }
