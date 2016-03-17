@@ -4,9 +4,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 
 gulp.task('release:update', function (cb) {
-    exec('npm version patch', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
+    exec('npm version patch', function (err) {
         cb(err);
     });
 });
@@ -16,9 +14,7 @@ gulp.task('release:move-files', function () {
 });
 
 gulp.task('release:publish', function (cb) {
-    exec('npm publish ./aliasify-mocks', function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
+    exec('npm publish ./aliasify-mocks', function (err) {
         cb(err);
     });
 });
