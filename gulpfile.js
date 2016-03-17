@@ -8,9 +8,8 @@ gulp.task('release', function () {
 
     gulp.src(['./package.json', './README.md'])
         .pipe(exec('npm version ' + version))
-        .pipe(gulp.dest('./aliasify-mocksr'))
+        .pipe(gulp.dest('./aliasify-mocks'))
         .pipe(exec('cd aliasify-mocks'))
         .pipe(exec('npm publish'))
-        .pipe(exec('cd ../'))
         .pipe(rimraf())
 });
