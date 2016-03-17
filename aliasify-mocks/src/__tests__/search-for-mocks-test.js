@@ -1,12 +1,14 @@
 describe('When searchForMocks method is called', function () {
-    var searchForMocks = spy(require('../search-for-mocks'));
     var fs = require('fs');
+    var matches = require('validator').matches;
+    var mocks;
     var path = require('path');
+    var result;
+    var searchForMocks = spy(require('../search-for-mocks'));
     var statMock = {
         isFile: stub(),
         isDirectory: stub()
     };
-    var result;
 
     beforeEach(function () {
         searchForMocks.reset();
@@ -14,6 +16,8 @@ describe('When searchForMocks method is called', function () {
         fs.readdirSync.reset();
         statMock.isDirectory.reset();
         statMock.isFile.reset();
+        matches.reset();
+        mocks = {};
     });
 
     describe('always', function () {
@@ -35,11 +39,75 @@ describe('When searchForMocks method is called', function () {
         });
     });
 
-    describe('with shouldUseDirectoryOnly', function () {
+    describe('with a file directoryPath', function () {
 
+        beforeEach(function () {
+            statMock.isFile.returns(true);
+            statMock.isDirectory.returns(false);
+
+            fs.statSync.returns(statMock);
+        });
+
+        describe('a matching pattern', function () {
+
+            beforeEach(function () {
+                matches.returns(true);
+            });
+
+            it('not shouldUseDirectoryOnly should add the mock pair to the mocks object', function () {
+                searchForMocks(false, '', mocks, '*-mocks', '__mocks__/test-mock.js');
+
+                expect(mocks).to.deep.equal({
+                    test: '__mocks__/test-mock'
+                });
+            });
+
+            it('not shouldUseDirectoryOnly should add the mock pair to the mocks object', function () {
+                searchForMocks(true, '', mocks, '*-mocks', 'test-mock.js');
+
+                expect(mocks).to.deep.equal({
+                    test: 'test-mock'
+                });
+            });
+        });
+
+        describe('a non matching pattern', function () {
+
+            beforeEach(function () {
+                matches.returns(false);
+            });
+
+            it('shouldUseDirectoryOnly should not add any mock to the mocks object', function () {
+                searchForMocks(true, '', mocks, '*-mocks', 'mocks-directory');
+
+                expect(mocks).to.deep.equal({});
+            });
+
+            it('not shouldUseDirectoryOnly should not add any mock to the mocks object', function () {
+                searchForMocks(false, '', mocks, '*-mocks', 'mocks-directory');
+
+                expect(mocks).to.deep.equal({});
+            });
+        });
     });
 
-    describe('without shouldUseDirectoryOnly', function () {
+    describe('with a directory directoryPath', function () {
+        // PENDING TO TEST
+    });
 
+    describe('with a non directory or non file directoryPath', function () {
+
+        beforeEach(function () {
+            statMock.isFile.returns(false);
+            statMock.isDirectory.returns(false);
+
+            fs.statSync.returns(statMock);
+        });
+
+        it('should not add any mock to the mocks object', function() {
+            searchForMocks(false, '', mocks, '*-mocks', 'mocks-directory');
+
+            expect(mocks).to.deep.equal({});
+        });
     });
 });
