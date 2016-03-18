@@ -45,14 +45,15 @@
     "rewireify": "^0.2.0",
     "run-sequence": "^1.1.5",
     "sinon": "^1.16.1",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "yargs": "^4.3.1"
   },
   "aliasify": {
     "aliases": {
       "path": "lib-test/modules-mocks/path-mock.js",
       "fs": "lib-test/modules-mocks/fs-mock.js",
-        "validator": "lib-test/modules-mocks/validator-mock.js",
-        "./src/search-for-mocks": "lib-test/modules-mocks/search-for-mocks-mock.js"
+      "validator": "lib-test/modules-mocks/validator-mock.js",
+      "./src/search-for-mocks": "lib-test/modules-mocks/search-for-mocks-mock.js"
     }
   }
 }
