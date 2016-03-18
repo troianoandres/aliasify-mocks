@@ -1,6 +1,8 @@
 # aliasify-mocks
 NPM package to mock all modules founded into specific directories
 
+[![Build Status](https://travis-ci.org/troianoandres/aliasify-mocks.svg?branch=master)](https://travis-ci.org/troianoandres/aliasify-mocks)
+
 ### Introduction
 
 This package is intended to allow mocking all modules or files without too much effort. The idea is to provide folders

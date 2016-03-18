@@ -2,9 +2,12 @@ var gulp = require('gulp');
 var exec = require('child_process').exec;
 var del = require('del');
 var runSequence = require('run-sequence');
+var argv = require('yargs').argv;
 
 gulp.task('release:update', function (cb) {
-    exec('npm version patch', function (err) {
+    var version = argv.version || 'patch';
+
+    exec('npm version ' + version, function (err) {
         cb(err);
     });
 });
