@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var matches = require('validator').matches;
 
-var searchForMocks = function (shouldUseDirectoryOnly, rootPath, mocks, pattern, directory) {
+var searchForMocks = function (shouldUseDirectoryOnly, rootPath, mocks, config, directory) {
     var directories;
     var originalPath;
     var directoryPath = path.join(rootPath, directory);
@@ -14,21 +14,21 @@ var searchForMocks = function (shouldUseDirectoryOnly, rootPath, mocks, pattern,
 
         if (directoryStat.isFile()) {
 
-            if (matches(directoryPath, pattern)) {
+            if (matches(directoryPath, config['mockFilePattern'])) {
                 originalPath = directory;
 
                 if (!shouldUseDirectoryOnly) {
-                    originalPath = directoryPath.replace('__mocks__/', '');
+                    originalPath = directoryPath.replace(config['mockFolderPattern'] + '/', '');
                 }
 
-                originalPath = originalPath.replace('-mock.js', '');
+                originalPath = originalPath.replace(config['mockFilePattern'], '');
 
                 mocks[originalPath] = directoryPath.replace('.js', '');
             }
         } else if (directoryStat.isDirectory()) {
             directories = fs.readdirSync(directoryPath);
 
-            lodash.forEach(directories, searchForMocks.bind(this, shouldUseDirectoryOnly, directoryPath, mocks, pattern));
+            lodash.forEach(directories, searchForMocks.bind(this, shouldUseDirectoryOnly, directoryPath, mocks, config));
         }
 
     } catch (error) {}
