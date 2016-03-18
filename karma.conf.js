@@ -23,14 +23,12 @@ module.exports = function(config) {
 
         files: [
             'lib-test/global.js',
-            'aliasify-mocks/src/**/__tests__/*-test.js',
-            'aliasify-mocks/src/**/__integration__/*-integration.js'
+            'aliasify-mocks/**/__tests__/*-test.js'
         ],
 
         preprocessors: {
             'lib-test/global.js': [ 'browserify' ],
-            'aliasify-mocks/src/**/__tests__/*-test.js': [ 'browserify' ],
-            'aliasify-mocks/src/**/__integration__/*-integration.js': [ 'browserify' ]
+            'aliasify-mocks/**/__tests__/*-test.js': [ 'browserify' ]
         },
 
         browserify: {
