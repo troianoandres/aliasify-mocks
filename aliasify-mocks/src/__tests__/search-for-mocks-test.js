@@ -9,6 +9,10 @@ describe('When searchForMocks method is called', function () {
         isFile: stub(),
         isDirectory: stub()
     };
+    var configMock = {
+        mockFilePattern: '-mock.js',
+        mockFolderPattern: '__mocks__'
+    };
 
     beforeEach(function () {
         searchForMocks.reset();
@@ -23,19 +27,19 @@ describe('When searchForMocks method is called', function () {
     describe('always', function () {
 
         it('should call path.join to generate the current directoryPath', function () {
-            result = searchForMocks(false, __dirname, {}, '*-mocks', 'mocks-directory');
+            result = searchForMocks(false, '', {}, configMock, 'mocks-directory');
 
             expect(path.join)
                 .to.have.callCount(1)
-                .to.have.been.calledWith(__dirname, 'mocks-directory');
+                .to.have.been.calledWith('', 'mocks-directory');
         });
 
         it('should call fs.statSync to get the directory status information related to directoryPath', function () {
-            result = searchForMocks(false, __dirname, {}, '*-mocks', 'mocks-directory');
+            result = searchForMocks(false, '', {}, configMock, 'mocks-directory');
 
             expect(fs.statSync)
                 .to.have.callCount(1)
-                .to.have.been.calledWith(path.join(__dirname, 'mocks-directory'));
+                .to.have.been.calledWith(path.join('', 'mocks-directory'));
         });
     });
 
@@ -55,15 +59,15 @@ describe('When searchForMocks method is called', function () {
             });
 
             it('not shouldUseDirectoryOnly should add the mock pair to the mocks object', function () {
-                searchForMocks(false, '', mocks, '*-mocks', '__mocks__/test-mock.js');
+                searchForMocks(false, '', mocks, configMock, '__mocks__/test-mock.js');
 
                 expect(mocks).to.deep.equal({
                     test: '__mocks__/test-mock'
                 });
             });
 
-            it('not shouldUseDirectoryOnly should add the mock pair to the mocks object', function () {
-                searchForMocks(true, '', mocks, '*-mocks', 'test-mock.js');
+            it('shouldUseDirectoryOnly should add the mock pair to the mocks object', function () {
+                searchForMocks(true, '', mocks, configMock, 'test-mock.js');
 
                 expect(mocks).to.deep.equal({
                     test: 'test-mock'
@@ -78,13 +82,13 @@ describe('When searchForMocks method is called', function () {
             });
 
             it('shouldUseDirectoryOnly should not add any mock to the mocks object', function () {
-                searchForMocks(true, '', mocks, '*-mocks', 'mocks-directory');
+                searchForMocks(true, '', mocks, configMock, 'mocks-directory');
 
                 expect(mocks).to.deep.equal({});
             });
 
             it('not shouldUseDirectoryOnly should not add any mock to the mocks object', function () {
-                searchForMocks(false, '', mocks, '*-mocks', 'mocks-directory');
+                searchForMocks(false, '', mocks, configMock, 'mocks-directory');
 
                 expect(mocks).to.deep.equal({});
             });
@@ -105,7 +109,7 @@ describe('When searchForMocks method is called', function () {
         });
 
         it('should not add any mock to the mocks object', function() {
-            searchForMocks(false, '', mocks, '*-mocks', 'mocks-directory');
+            searchForMocks(false, '', mocks, configMock, 'mocks-directory');
 
             expect(mocks).to.deep.equal({});
         });
